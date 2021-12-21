@@ -19,7 +19,16 @@ menubar = Menu(frame)
 menubar.add_command(label = "Save", command=save)
 menubar.add_command(label = "Exit", command=exit)
 
-editor = Text(frame, bg="black", fg="white", insertbackground="white", padx=2, pady=2, insertofftime=0, width=1000, height=1000, font = ("monospace", 13))
+editor = Text(frame, bg="black",
+              fg="white",
+              insertbackground="white",
+              padx=2,
+              pady=2,
+              insertofftime=0,
+              width=1000,
+              height=1000,
+              font = ('monospace', 13)
+              )
 
 with open('notes.plain') as f:
     lines = f.read()
