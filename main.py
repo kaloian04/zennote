@@ -19,18 +19,20 @@ menubar = Menu(frame)
 menubar.add_command(label = "Save", command=save)
 menubar.add_command(label = "Exit", command=exit)
 
-Font_tuple = ("Consolas", 13)
+font = ("Consolas", 13)
 
-editor = Text(frame, bg="black",
-              fg="white",
-              insertbackground="white",
+editor = Text(frame,
+              bg="#282a36",
+              fg="#f8f8f2",
+              insertbackground="#f8f8f2",
               padx=2,
               pady=2,
               insertofftime=0,
               width=1000,
               height=1000,
-              font = Font_tuple,
-              )
+              font = font)
+
+#root.bind('<Control-s>', save)
 
 with open('notes.plain') as f:
     lines = f.read()
