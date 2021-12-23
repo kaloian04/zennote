@@ -1,5 +1,6 @@
 # imports
 from tkinter import *
+import os
 
 # function to save the file
 def save():
@@ -20,6 +21,11 @@ def check_for_changes():
     elif contents != editor.get("1.0",'end-1c'):
         root.title("*Zennote")
     root.after(100, check_for_changes)
+
+# creating the notes.plain file if it does not exist
+if os.path.isfile('./notes.plain') == False:
+    with open('notes.plain', 'w') as f:
+        pass
 
 # creating the root window
 root = Tk()
