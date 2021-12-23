@@ -1,5 +1,4 @@
 from tkinter import *
-from time import time, sleep
 
 root = Tk()
 root.geometry("1024x768")
@@ -20,9 +19,9 @@ def check_for_changes():
     with open('notes.plain') as f:
         lines = f.read()
     if lines == editor.get("1.0",'end-1c'):
-        root.title("Zennote - No Changes!")
+        root.title("Zennote")
     elif lines != editor.get("1.0",'end-1c'):
-        root.title("Zennote - File Changed!")
+        root.title("*Zennote")
     root.after(100, check_for_changes)
 
 menubar = Menu(frame)
