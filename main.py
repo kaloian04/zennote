@@ -17,10 +17,10 @@ def exit():
 
 def check_for_changes():
     with open('notes.plain') as f:
-        lines = f.read()
-    if lines == editor.get("1.0",'end-1c'):
+        contents = f.read()
+    if contents == editor.get("1.0",'end-1c'):
         root.title("Zennote")
-    elif lines != editor.get("1.0",'end-1c'):
+    elif contents != editor.get("1.0",'end-1c'):
         root.title("*Zennote")
     root.after(100, check_for_changes)
 
@@ -45,9 +45,9 @@ root.bind('<Control-s>', lambda x: save())
 root.bind('<Control-q>', lambda x: exit())
 
 with open('notes.plain') as f:
-    lines = f.read()
+    contents = f.read()
 
-editor.insert("1.0", lines)
+editor.insert("1.0", contents)
 
 editor.pack()
 
