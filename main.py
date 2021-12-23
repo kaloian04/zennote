@@ -33,6 +33,7 @@ editor = Text(frame,
               font = font)
 
 root.bind('<Control-s>', lambda x: save())
+root.bind('<Control-q>', lambda x: exit())
 
 with open('notes.plain') as f:
     lines = f.read()
