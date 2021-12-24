@@ -65,5 +65,5 @@ check_for_changes()
 root.bind('<Control-s>', lambda x: save())
 root.bind('<Control-q>', lambda x: exit())
 
-# the mainlopp method
+# the mainloop method
 root.mainloop()
