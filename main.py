@@ -4,7 +4,7 @@ import os
 
 # function to save the file
 def save():
-    file = open("notes.plain", "w")
+    file = open("./notes/notes.plain", "w")
     file.write(editor.get("1.0",'end-1c'))
     file.close()
 
@@ -14,7 +14,7 @@ def exit():
 
 # function that checks for changes in the file
 def check_for_changes():
-    with open('notes.plain') as f:
+    with open('./notes/notes.plain') as f:
         contents = f.read()
     if contents == editor.get("1.0",'end-1c'):
         root.title("Zennote")
@@ -23,8 +23,9 @@ def check_for_changes():
     root.after(100, check_for_changes)
 
 # creating the notes.plain file if it does not exist
-if os.path.isfile('./notes.plain') == False:
-    with open('notes.plain', 'w') as f:
+if os.path.exists('./notes/notes.plain') == False:
+    os.mkdir("./notes")
+    with open('./notes/notes.plain', 'w') as f:
         pass
 
 # creating the root window
@@ -52,7 +53,7 @@ editor = Text(frame,
               width=1000,
               height=1000,
               font = font)
-with open('notes.plain') as f:
+with open('./notes/notes.plain') as f:
     contents = f.read()
 editor.insert("1.0", contents)
 editor.pack()
