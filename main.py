@@ -17,6 +17,11 @@ def exit():
     elif contents != editor.get("1.0",'end-1c'):
         unsaved_warning()
 
+# creating the save and exit function
+def save_and_exit():
+    save()
+    root.destroy()
+
 # function that checks for changes in the file
 def check_for_changes():
     with open('./notes/notes.plain') as f:
@@ -34,6 +39,10 @@ def unsaved_warning():
     warning.title("Unsaved changes!")
     text = Label(warning, text="Unsaved Changes!")
     text.pack()
+    button_save_and_exit = Button(warning,
+                                  text="Save and exit?",
+                                  command=save_and_exit)
+    button_save_and_exit.pack()
 
 # creating the notes.plain file if it does not exist
 if os.path.exists('./notes/notes.plain') == False:
