@@ -51,6 +51,7 @@ def unsaved_warning():
                                 text = "Quit anyway!",
                                 command=quit_anyway)
     button_quit_anyway.pack()
+    
 # creating the notes.plain file if it does not exist
 if os.path.exists('./notes/notes.plain') == False:
     os.mkdir("./notes")
