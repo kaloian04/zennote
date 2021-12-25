@@ -10,7 +10,12 @@ def save():
 
 # function to quit the programm
 def exit():
-    root.destroy()
+    with open('./notes/notes.plain') as f:
+        contents = f.read()
+    if contents == editor.get("1.0",'end-1c'):
+        root.destroy()
+    elif contents != editor.get("1.0",'end-1c'):
+        unsaved_warning()
 
 # function that checks for changes in the file
 def check_for_changes():
@@ -21,6 +26,14 @@ def check_for_changes():
     elif contents != editor.get("1.0",'end-1c'):
         root.title("*Zennote")
     root.after(100, check_for_changes)
+
+# creating the warning function
+def unsaved_warning():
+    warning = Toplevel(root)
+    warning.geometry("300x100")
+    warning.title("Unsaved changes!")
+    text = Label(warning, text="Unsaved Changes!")
+    text.pack()
 
 # creating the notes.plain file if it does not exist
 if os.path.exists('./notes/notes.plain') == False:
