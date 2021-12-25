@@ -22,6 +22,10 @@ def save_and_exit():
     save()
     root.destroy()
 
+# quit anyway function
+def quit_anyway():
+    root.destroy()
+
 # function that checks for changes in the file
 def check_for_changes():
     with open('./notes/notes.plain') as f:
@@ -37,13 +41,16 @@ def unsaved_warning():
     warning = Toplevel(root)
     warning.geometry("300x100")
     warning.title("Unsaved changes!")
-    text = Label(warning, text="Unsaved Changes!")
+    text = Label(warning, text="Unsaved changes!")
     text.pack()
     button_save_and_exit = Button(warning,
                                   text="Save and exit?",
                                   command=save_and_exit)
     button_save_and_exit.pack()
-
+    button_quit_anyway = Button(warning,
+                                text = "Quit anyway!",
+                                command=quit_anyway)
+    button_quit_anyway.pack()
 # creating the notes.plain file if it does not exist
 if os.path.exists('./notes/notes.plain') == False:
     os.mkdir("./notes")
