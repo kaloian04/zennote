@@ -1,2 +1,2 @@
 # zennote
-zen note-taking app writter in python
+zen note-taking app written in python
