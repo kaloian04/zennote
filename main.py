@@ -44,6 +44,7 @@ def save_as():
 
 def create_new_file():
     editor.pack()
+    editor.delete("1.0", END)
 
 
 def exit():
