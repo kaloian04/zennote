@@ -1,6 +1,10 @@
 # imports
-from tkinter import *
 import os
+from tkinter import *
+from tkinter import filedialog
+
+def open_file():
+    return filedialog.askopenfilename()
 
 # function to save the file
 def save():
@@ -51,7 +55,7 @@ def unsaved_warning():
                                 text = "Quit anyway!",
                                 command=quit_anyway)
     button_quit_anyway.pack()
-    
+
 # creating the notes.plain file if it does not exist
 if os.path.exists('./notes/notes.plain') == False:
     os.mkdir("./notes")
@@ -69,6 +73,7 @@ frame.pack()
 menubar = Menu(frame)
 menubar.add_command(label = "Save", command=save)
 menubar.add_command(label = "Exit", command=exit)
+menubar.add_command(label = "Open File", command=open_file)
 root.config(menu = menubar)
 
 # creating the main text editor widget
