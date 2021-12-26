@@ -36,6 +36,10 @@ def save_as():
     file.write(editor.get("1.0", END))
     file.close()
 
+# create new file function
+def create_new_file():
+    editor.pack()
+
 # function to quit the programm
 def exit():
     try:
@@ -93,6 +97,7 @@ frame.pack()
 # creating the menubar
 menubar = Menu(frame)
 menubar.add_command(label = "Open File", command=open_file)
+menubar.add_command(label = "Create New File", command=create_new_file)
 menubar.add_command(label = "Save", command=save)
 menubar.add_command(label = "Save As", command=save_as)
 menubar.add_command(label = "Exit", command=exit)
@@ -116,6 +121,7 @@ root.bind('<Control-o>', lambda x: open_file())
 root.bind('<Control-s>', lambda x: save())
 root.bind('<Control-S>', lambda x: save_as())
 root.bind('<Control-q>', lambda x: exit())
+root.bind('<Control-n>', lambda x: create_new_file())
 
 # the mainloop method
 root.mainloop()
