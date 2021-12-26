@@ -30,6 +30,7 @@ def save():
     except:
         pass
 
+# save as function
 def save_as():
     file = filedialog.asksaveasfile()
     file.write(editor.get("1.0", END))
@@ -61,9 +62,9 @@ def check_for_changes():
     with open(open_file.file_loc) as f:
         contents = f.read()
     if contents == editor.get("1.0",'end-1c'):
-        root.title("Zennote")
+        root.title("Zennote - " + open_file.file_loc)
     elif contents != editor.get("1.0",'end-1c'):
-        root.title("*Zennote")
+        root.title("*Zennote - " + open_file.file_loc)
     root.after(100, check_for_changes)
 
 # creating the warning function
