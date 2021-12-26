@@ -5,17 +5,22 @@ from tkinter import filedialog
 
 # open file function
 def open_file():
-    return filedialog.askopenfilename()
+    open_file.file_loc = filedialog.askopenfilename()
+    with open(open_file.file_loc) as f:
+        contents = f.read()
+    editor.insert("1.0", contents)
+    editor.pack()
+    check_for_changes()
 
 # function to save the file
 def save():
-    file = open("./notes/notes.plain", "w")
+    file = open(open_file.file_loc, "w")
     file.write(editor.get("1.0",'end-1c'))
     file.close()
 
 # function to quit the programm
 def exit():
-    with open('./notes/notes.plain') as f:
+    with open(open_file.file_loc) as f:
         contents = f.read()
     if contents == editor.get("1.0",'end-1c'):
         root.destroy()
@@ -33,7 +38,7 @@ def quit_anyway():
 
 # function that checks for changes in the file
 def check_for_changes():
-    with open('./notes/notes.plain') as f:
+    with open(open_file.file_loc) as f:
         contents = f.read()
     if contents == editor.get("1.0",'end-1c'):
         root.title("Zennote")
@@ -56,12 +61,6 @@ def unsaved_warning():
                                 text = "Quit anyway!",
                                 command=quit_anyway)
     button_quit_anyway.pack()
-
-# creating the notes.plain file if it does not exist
-if os.path.exists('./notes/notes.plain') == False:
-    os.mkdir("./notes")
-    with open('./notes/notes.plain', 'w') as f:
-        pass
 
 # creating the root window
 root = Tk()
@@ -89,18 +88,11 @@ editor = Text(frame,
               width=1000,
               height=1000,
               font = font)
-with open('./notes/notes.plain') as f:
-    contents = f.read()
-editor.insert("1.0", contents)
-editor.pack()
-
-# executing the check_for_changes() function
-check_for_changes()
 
 # creating the key bindings
+root.bind('<Control-o>', lambda x: open_file())
 root.bind('<Control-s>', lambda x: save())
 root.bind('<Control-q>', lambda x: exit())
-root.bind('<Control-o>', lambda x: open_file())
 
 # the mainloop method
 root.mainloop()
