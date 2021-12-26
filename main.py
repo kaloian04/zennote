@@ -3,6 +3,7 @@ import os
 from tkinter import *
 from tkinter import filedialog
 
+# open file function
 def open_file():
     return filedialog.askopenfilename()
 
@@ -99,6 +100,7 @@ check_for_changes()
 # creating the key bindings
 root.bind('<Control-s>', lambda x: save())
 root.bind('<Control-q>', lambda x: exit())
+root.bind('<Control-o>', lambda x: open_file())
 
 # the mainloop method
 root.mainloop()
