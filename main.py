@@ -8,6 +8,7 @@ RESOLUTION = "1024x768"
 BACKGROUND = "#282a36"
 FOREGROUND = "#f8f8f2"
 
+
 def open_file():
     if editor.get("1.0", "end-1c") == "":
         open_file.file_loc = filedialog.askopenfilename()
