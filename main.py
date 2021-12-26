@@ -30,6 +30,11 @@ def save():
     except:
         pass
 
+def save_as():
+    file = filedialog.asksaveasfile()
+    file.write(editor.get("1.0", END))
+    file.close()
+
 # function to quit the programm
 def exit():
     try:
@@ -88,6 +93,7 @@ frame.pack()
 menubar = Menu(frame)
 menubar.add_command(label = "Open File", command=open_file)
 menubar.add_command(label = "Save", command=save)
+menubar.add_command(label = "Save As", command=save_as)
 menubar.add_command(label = "Exit", command=exit)
 root.config(menu = menubar)
 
@@ -107,6 +113,7 @@ editor = Text(frame,
 # creating the key bindings
 root.bind('<Control-o>', lambda x: open_file())
 root.bind('<Control-s>', lambda x: save())
+root.bind('<Control-S>', lambda x: save_as())
 root.bind('<Control-q>', lambda x: exit())
 
 # the mainloop method
