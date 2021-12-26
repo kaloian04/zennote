@@ -1,16 +1,13 @@
-# imports
 import os
 from tkinter import *
 from tkinter import filedialog
 
-# constants
 FONT = ("Consolas", 13)
 TITLE = "Zennote"
 RESOLUTION = "1024x768"
 BACKGROUND = "#282a36"
 FOREGROUND = "#f8f8f2"
 
-# open file function
 def open_file():
     if editor.get("1.0", "end-1c") == "":
         open_file.file_loc = filedialog.askopenfilename()
@@ -29,7 +26,6 @@ def open_file():
         check_for_changes()
 
 
-# function to save the file
 def save():
     try:
         file = open(open_file.file_loc, "w")
@@ -39,19 +35,16 @@ def save():
         pass
 
 
-# save as function
 def save_as():
     file = filedialog.asksaveasfile()
     file.write(editor.get("1.0", END))
     file.close()
 
 
-# create new file function
 def create_new_file():
     editor.pack()
 
 
-# function to quit the programm
 def exit():
     try:
         with open(open_file.file_loc) as f:
@@ -64,18 +57,15 @@ def exit():
         root.destroy()
 
 
-# creating the save and exit function
 def save_and_exit():
     save()
     root.destroy()
 
 
-# quit anyway function
 def quit_anyway():
     root.destroy()
 
 
-# function that checks for changes in the file
 def check_for_changes():
     with open(open_file.file_loc) as f:
         contents = f.read()
@@ -86,7 +76,6 @@ def check_for_changes():
     root.after(100, check_for_changes)
 
 
-# creating the warning function
 def unsaved_warning():
     warning = Toplevel(root)
     warning.geometry("300x100")
@@ -99,14 +88,12 @@ def unsaved_warning():
     button_quit_anyway.pack()
 
 
-# creating the root window
 root = Tk()
 root.geometry(RESOLUTION)
 root.title(TITLE)
 frame = Frame(root)
 frame.pack()
 
-# creating the menubar
 menubar = Menu(frame)
 filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Open", command=open_file)
@@ -117,7 +104,6 @@ menubar.add_cascade(label="File", menu=filemenu)
 menubar.add_command(label="Exit", command=exit)
 root.config(menu=menubar)
 
-# creating the main text editor widget
 editor = Text(
     frame,
     bg=BACKGROUND,
@@ -131,12 +117,10 @@ editor = Text(
     font=FONT,
 )
 
-# creating the key bindings
 root.bind("<Control-o>", lambda x: open_file())
 root.bind("<Control-s>", lambda x: save())
 root.bind("<Control-S>", lambda x: save_as())
 root.bind("<Control-q>", lambda x: exit())
 root.bind("<Control-n>", lambda x: create_new_file())
 
-# the mainloop method
 root.mainloop()
