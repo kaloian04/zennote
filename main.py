@@ -3,6 +3,13 @@ import os
 from tkinter import *
 from tkinter import filedialog
 
+# constants
+FONT = ("Consolas", 13)
+TITLE = "Zennote"
+RESOLUTION = "1024x768"
+BACKGROUND = "#282a36"
+FOREGROUND = "#f8f8f2"
+
 # open file function
 def open_file():
     if editor.get("1.0",'end-1c') == "":
@@ -89,8 +96,8 @@ def unsaved_warning():
 
 # creating the root window
 root = Tk()
-root.geometry("1024x768")
-root.title("Zennote")
+root.geometry(RESOLUTION)
+root.title(TITLE)
 frame = Frame(root)
 frame.pack()
 
@@ -104,17 +111,16 @@ menubar.add_command(label = "Exit", command=exit)
 root.config(menu = menubar)
 
 # creating the main text editor widget
-font = ("Consolas", 13)
 editor = Text(frame,
-              bg="#282a36",
-              fg="#f8f8f2",
-              insertbackground="#f8f8f2",
+              bg=BACKGROUND,
+              fg=FOREGROUND,
+              insertbackground=FOREGROUND,
               padx=2,
               pady=2,
               insertofftime=0,
               width=1000,
               height=1000,
-              font = font)
+              font = FONT)
 
 # creating the key bindings
 root.bind('<Control-o>', lambda x: open_file())
