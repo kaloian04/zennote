@@ -5,12 +5,21 @@ from tkinter import filedialog
 
 # open file function
 def open_file():
-    open_file.file_loc = filedialog.askopenfilename()
-    with open(open_file.file_loc) as f:
-        contents = f.read()
-    editor.insert("1.0", contents)
-    editor.pack()
-    check_for_changes()
+    if editor.get("1.0",'end-1c') == "":
+        open_file.file_loc = filedialog.askopenfilename()
+        with open(open_file.file_loc) as f:
+            contents = f.read()
+        editor.insert("1.0", contents)
+        editor.pack()
+        check_for_changes()
+    else:
+        open_file.file_loc = filedialog.askopenfilename()
+        with open(open_file.file_loc) as f:
+            contents = f.read()
+        editor.delete('1.0', END)
+        editor.insert("1.0", contents)
+        editor.pack()
+        check_for_changes()
 
 # function to save the file
 def save():
@@ -32,6 +41,7 @@ def exit():
             unsaved_warning()
     except:
         root.destroy()
+
 # creating the save and exit function
 def save_and_exit():
     save()
