@@ -103,10 +103,13 @@ frame.pack()
 
 # creating the menubar
 menubar = Menu(frame)
-menubar.add_command(label = "Open File", command=open_file)
-menubar.add_command(label = "Create New File", command=create_new_file)
-menubar.add_command(label = "Save", command=save)
-menubar.add_command(label = "Save As", command=save_as)
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label = "Open", command=open_file)
+filemenu.add_command(label = "Create New", command=create_new_file)
+filemenu.add_command(label = "Save", command=save)
+filemenu.add_command(label = "Save As", command=save_as)
+menubar.add_cascade(label="File", menu=filemenu)
+
 menubar.add_command(label = "Exit", command=exit)
 root.config(menu = menubar)
 
