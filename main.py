@@ -14,19 +14,24 @@ def open_file():
 
 # function to save the file
 def save():
-    file = open(open_file.file_loc, "w")
-    file.write(editor.get("1.0",'end-1c'))
-    file.close()
+    try:
+        file = open(open_file.file_loc, "w")
+        file.write(editor.get("1.0",'end-1c'))
+        file.close()
+    except:
+        pass
 
 # function to quit the programm
 def exit():
-    with open(open_file.file_loc) as f:
-        contents = f.read()
-    if contents == editor.get("1.0",'end-1c'):
+    try:
+        with open(open_file.file_loc) as f:
+            contents = f.read()
+        if contents == editor.get("1.0",'end-1c'):
+            root.destroy()
+        elif contents != editor.get("1.0",'end-1c'):
+            unsaved_warning()
+    except:
         root.destroy()
-    elif contents != editor.get("1.0",'end-1c'):
-        unsaved_warning()
-
 # creating the save and exit function
 def save_and_exit():
     save()
@@ -71,9 +76,9 @@ frame.pack()
 
 # creating the menubar
 menubar = Menu(frame)
+menubar.add_command(label = "Open File", command=open_file)
 menubar.add_command(label = "Save", command=save)
 menubar.add_command(label = "Exit", command=exit)
-menubar.add_command(label = "Open File", command=open_file)
 root.config(menu = menubar)
 
 # creating the main text editor widget
