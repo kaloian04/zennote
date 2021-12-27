@@ -10,7 +10,7 @@ FOREGROUND = "#f8f8f2"
 
 
 def open_file():
-    if editor.get("1.0", "end-1c") == "":
+    if editor.get("1.0", END) == "":
         open_file.file_loc = filedialog.askopenfilename()
         with open(open_file.file_loc) as f:
             contents = f.read()
@@ -30,7 +30,7 @@ def open_file():
 def save():
     try:
         file = open(open_file.file_loc, "w")
-        file.write(editor.get("1.0", "end-1c"))
+        file.write(editor.get("1.0", END))
         file.close()
     except:
         pass
@@ -51,9 +51,9 @@ def exit():
     try:
         with open(open_file.file_loc) as f:
             contents = f.read()
-        if contents == editor.get("1.0", "end-1c"):
+        if contents == editor.get("1.0", END):
             root.destroy()
-        elif contents != editor.get("1.0", "end-1c"):
+        elif contents != editor.get("1.0", END):
             unsaved_warning()
     except:
         root.destroy()
@@ -71,9 +71,9 @@ def quit_anyway():
 def check_for_changes():
     with open(open_file.file_loc) as f:
         contents = f.read()
-    if contents == editor.get("1.0", "end-1c"):
+    if contents == editor.get("1.0", END):
         root.title("Zennote - " + open_file.file_loc)
-    elif contents != editor.get("1.0", "end-1c"):
+    elif contents != editor.get("1.0", END):
         root.title("*Zennote - " + open_file.file_loc)
     root.after(100, check_for_changes)
 
