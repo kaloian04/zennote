@@ -40,6 +40,7 @@ def save_as():
     file = filedialog.asksaveasfile()
     file.write(editor.get("1.0", END))
     file.close()
+    open_file()
 
 
 def create_new_file():
